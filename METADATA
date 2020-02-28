@@ -1,0 +1,13 @@
+name: "MS TPM 2.0 Reference Implementation"
+description:
+    "The official TCG reference implementation of the TPM 2.0 Specification."
+
+third_party {
+  url {
+    type: GIT
+    value: "https://github.com/microsoft/ms-tpm-20-ref.git"
+  }
+  version: "fb2c20b7e7e858e7c62f036a6a01cbad0737b98e"
+  last_upgrade_date { year: 2020 month: 2 day: 27 }
+  license_type: NOTICE
+}
