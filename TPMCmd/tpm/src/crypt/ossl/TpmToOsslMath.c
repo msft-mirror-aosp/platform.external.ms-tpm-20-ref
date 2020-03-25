@@ -82,10 +82,10 @@ OsslToTpmBn(
     {
         int         i;
     //
-        VERIFY((unsigned)osslBn->top <= BnGetAllocated(bn));
-        for(i = 0; i < osslBn->top; i++)
+        VERIFY((unsigned)osslBn->width <= BnGetAllocated(bn));
+        for(i = 0; i < osslBn->width; i++)
             bn->d[i] = osslBn->d[i];
-        BnSetTop(bn, osslBn->top);
+        BnSetTop(bn, osslBn->width);
     }
     return TRUE;
 Error:
@@ -108,7 +108,7 @@ BigInitialized(
         return NULL;
     toInit->d = (BN_ULONG *)&initializer->d[0];
     toInit->dmax = (int)initializer->allocated;
-    toInit->top = (int)initializer->size;
+    toInit->width = (int)initializer->size;
     toInit->neg = 0;
     toInit->flags = 0;
     return toInit;
@@ -202,7 +202,7 @@ MathLibraryCompatibilityCheck(
     // Convert the test data to an OpenSSL BIGNUM
     BN_bin2bn(test, sizeof(test), osslTemp);
     // Make sure the values are consistent
-    VERIFY(osslTemp->top == (int)tpmTemp->size);
+    VERIFY(osslTemp->width == (int)tpmTemp->size);
     for(i = 0; i < tpmTemp->size; i++)
         VERIFY(osslTemp->d[i] == tpmTemp->d[i]);
     OSSL_LEAVE();
@@ -582,7 +582,6 @@ BnEccModMult2(
     )
 {
     EC_POINT            *pR = EC_POINT_new(E->G);
-    EC_POINT            *pS = EcPointInitialized(S, E);
     BIG_INITIALIZED(bnD, d);
     EC_POINT            *pQ = EcPointInitialized(Q, E);
     BIG_INITIALIZED(bnU, u);
@@ -591,17 +590,10 @@ BnEccModMult2(
         EC_POINT_mul(E->G, pR, bnD, pQ, bnU, E->CTX);
     else
     {
-        const EC_POINT        *points[2];
-        const BIGNUM          *scalars[2];
-        points[0] = pS;
-        points[1] = pQ;
-        scalars[0] = bnD;
-        scalars[1] = bnU;
-        EC_POINTs_mul(E->G, pR, NULL, 2, points, scalars, E->CTX);
+        return FALSE;
     }
     PointFromOssl(R, pR, E);
     EC_POINT_free(pR);
-    EC_POINT_free(pS);
     EC_POINT_free(pQ);
     return !BnEqualZero(R->z);
 }

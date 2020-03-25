@@ -49,26 +49,6 @@
 
 #define SYMMETRIC_ALIGNMENT RADIX_BYTES
 
-#if OPENSSL_VERSION_NUMBER >= 0x10200000L
-    // Check the bignum_st definition in crypto/bn/bn_lcl.h and either update the
-    // version check or provide the new definition for this version.
-#   error Untested OpenSSL version
-#elif OPENSSL_VERSION_NUMBER >= 0x10100000L
-    // from crypto/bn/bn_lcl.h
-    struct bignum_st {
-        BN_ULONG *d;                /* Pointer to an array of 'BN_BITS2' bit
-                                    * chunks. */
-        int top;                    /* Index of last used d +1. */
-                                    /* The next are internal book keeping for bn_expand. */
-        int dmax;                   /* Size of the d array. */
-        int neg;                    /* one if the number is negative */
-        int flags;
-    };
-#else
-#   define EC_POINT_get_affine_coordinates EC_POINT_get_affine_coordinates_GFp
-#   define EC_POINT_set_affine_coordinates EC_POINT_set_affine_coordinates_GFp
-#endif // OPENSSL_VERSION_NUMBER
-
 #include <openssl/bn.h>
 
 //** Macros and Defines
