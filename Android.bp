@@ -29,6 +29,7 @@ cc_defaults {
         "libcrypto",
     ],
     cflags: [
+        "-DMAX_SYM_DATA=256",
         "-DDEBUG=YES",
         "-DALG_CAMELLIA=ALG_NO",
         "-Wno-logical-op-parentheses",
