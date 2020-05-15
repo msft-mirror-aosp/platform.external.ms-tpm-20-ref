@@ -5,11 +5,11 @@ third_party {
     type: GIT
     value: "https://github.com/microsoft/ms-tpm-20-ref.git"
   }
-  version: "37055a67311632e9324af11eadb4b25cfbff77e9"
+  version: "69437ff7622a0110ac2088fca5ae9bb265c0fb1c"
   license_type: NOTICE
   last_upgrade_date {
     year: 2020
-    month: 4
+    month: 5
     day: 14
   }
 }
