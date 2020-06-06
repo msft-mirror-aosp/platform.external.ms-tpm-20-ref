@@ -55,6 +55,15 @@ cc_library {
         "TPMCmd/tpm/src/support/*.c",
         "TPMCmd/tpm/src/X509/*.c",
     ],
+    export_include_dirs: [
+        "TPMCmd/Platform/include",
+        "TPMCmd/Platform/include/prototypes",
+        "TPMCmd/Simulator/include",
+        "TPMCmd/Simulator/include/prototypes",
+        "TPMCmd/tpm/include",
+        "TPMCmd/tpm/include/Ossl",
+        "TPMCmd/tpm/include/prototypes",
+    ],
     defaults: [ "ms-tpm-20-ref-defaults" ],
 }
 
