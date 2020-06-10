@@ -40,11 +40,12 @@ cc_defaults {
     ],
 }
 
-cc_binary_host {
-    name: "ms-tpm-20-ref",
+cc_library {
+    name: "ms-tpm-20-ref-lib",
     srcs: [
         "TPMCmd/Platform/src/*.c",
-        "TPMCmd/Simulator/src/*.c",
+        "TPMCmd/Simulator/src/TPMCmdp.c",
+        "TPMCmd/Simulator/src/TcpServer.c",
         "TPMCmd/tpm/src/command/**/*.c",
         "TPMCmd/tpm/src/crypt/*.c",
         "TPMCmd/tpm/src/crypt/ossl/*.c",
@@ -53,6 +54,26 @@ cc_binary_host {
         "TPMCmd/tpm/src/subsystem/*.c",
         "TPMCmd/tpm/src/support/*.c",
         "TPMCmd/tpm/src/X509/*.c",
+    ],
+    export_include_dirs: [
+        "TPMCmd/Platform/include",
+        "TPMCmd/Platform/include/prototypes",
+        "TPMCmd/Simulator/include",
+        "TPMCmd/Simulator/include/prototypes",
+        "TPMCmd/tpm/include",
+        "TPMCmd/tpm/include/Ossl",
+        "TPMCmd/tpm/include/prototypes",
+    ],
+    defaults: [ "ms-tpm-20-ref-defaults" ],
+}
+
+cc_binary_host {
+    name: "ms-tpm-20-ref",
+    srcs: [
+        "TPMCmd/Simulator/src/TPMCmds.c",
+    ],
+    shared_libs: [
+        "ms-tpm-20-ref-lib",
     ],
     defaults: [ "ms-tpm-20-ref-defaults" ],
 }
