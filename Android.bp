@@ -32,11 +32,6 @@ cc_defaults {
         "-DMAX_SYM_DATA=256",
         "-DDEBUG=YES",
         "-DALG_CAMELLIA=ALG_NO",
-        // BoringSSL does not support SM3 or SM4
-        // TODO(prb): remove once https://boringssl-review.googlesource.com/c/boringssl/+/43104
-        // lands in AOSP.
-        "-DOPENSSL_NO_SM3",
-        "-DOPENSSL_NO_SM4",
         "-Wno-logical-op-parentheses",
         "-Wno-empty-body",
         "-Wno-missing-field-initializers",
