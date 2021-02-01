@@ -1,3 +1,6 @@
+# *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+#     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+#     DEPENDING ON IT IN YOUR PROJECT. ***
 name: "MS TPM 2.0 Reference Implementation"
 description: "The official TCG reference implementation of the TPM 2.0 Specification."
 third_party {
