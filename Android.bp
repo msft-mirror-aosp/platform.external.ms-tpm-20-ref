@@ -74,6 +74,11 @@ cc_defaults {
         "-Wno-unused-parameter",
         "-Wno-typedef-redefinition",
     ],
+    target: {
+        darwin: {
+            enabled: true,
+        },
+    },
 }
 
 cc_library_static {
