@@ -43,12 +43,12 @@
 #include <stdbool.h>
 #include "TpmBuildSwitches.h"
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #   pragma warning(push, 3)
 #   include <windows.h>
 #   include <winsock.h>
 #   pragma warning(pop)
-#elif defined(__unix__)
+#elif defined(__unix__) || __APPLE__
 #   include "BaseTypes.h"   // on behalf of TpmFail_fp.h
     typedef int SOCKET;
 #else

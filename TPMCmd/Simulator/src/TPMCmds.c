@@ -45,12 +45,12 @@
 #include <ctype.h>
 #include <string.h>
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #   pragma warning(push, 3)
 #   include <windows.h>
 #   include <winsock.h>
 #   pragma warning(pop)
-#elif defined(__unix__)
+#elif defined(__unix__) || __APPLE__
 #   define _strcmpi strcasecmp
     typedef int SOCKET;
 #else
