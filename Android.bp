@@ -68,11 +68,12 @@ cc_defaults {
         "-DDEBUG=YES",
         "-DUSE_DEBUG_RNG=NO",
         "-DALG_CAMELLIA=ALG_NO",
-        "-Wno-logical-op-parentheses",
+        "-Wno-cast-function-type-mismatch",
         "-Wno-empty-body",
+        "-Wno-logical-op-parentheses",
         "-Wno-missing-field-initializers",
-        "-Wno-unused-parameter",
         "-Wno-typedef-redefinition",
+        "-Wno-unused-parameter",
     ],
     target: {
         darwin: {
